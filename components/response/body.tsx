@@ -26,9 +26,7 @@ interface QueryParam {
 const Body = ({ onParamsChange }: { changeUri?: (uri: string) => void; onParamsChange?: (params: QueryParam[]) => void }) => {
     type FormValues = z.infer<typeof formSchema>
     const form = useFormContext<FormValues>();
-    console.log(form.getValues());
 
-    // form.setValue()
     const [fields, setFields] = useState<QueryParam[]>([
         { key: '', value: '' }
     ])
@@ -46,6 +44,10 @@ const Body = ({ onParamsChange }: { changeUri?: (uri: string) => void; onParamsC
         setFields(newFields)
         if (onParamsChange)
             onParamsChange(newFields)
+
+        const obj = {} as Record<string, string>
+        newFields.forEach(({ key, value }) => { obj[key] = value })
+        form.setValue('body', JSON.stringify(obj))
 
     }
 
@@ -84,7 +86,7 @@ const Body = ({ onParamsChange }: { changeUri?: (uri: string) => void; onParamsC
                 </CardHeader>
                 <CardContent>
                     <Tabs value={bodyType} onValueChange={(v) => setBodyType(v as typeof bodyType)}>
-                        <TabsList className='flex-wrap'>
+                        <TabsList className='flex-wrap' >
                             <TabsTrigger value='none' className='font-medium transition-all text-blue-300 hover:bg-neutral-800 rounded-md px-2 py-1'>None</TabsTrigger>
                             <TabsTrigger value='form-data' className='font-medium transition-all text-blue-300 hover:bg-neutral-800 rounded-md px-2 py-1'>form-data</TabsTrigger>
                             <TabsTrigger value='x-www-form-urlencoded' className='font-medium transition-all text-blue-300 hover:bg-neutral-800 rounded-md px-2 py-1'>x-www-form-urlencoded</TabsTrigger>

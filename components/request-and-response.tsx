@@ -26,7 +26,7 @@ const navItems = [
 
 export default function RequestAndResponse() {
     return (
-        <Card className="mt-3 border border-neutral-800 bg-neutral-900/50 shadow-lg rounded-2xl">
+        <Card className="mt-3 border border-neutral-800 dark:bg-neutral-900/50 bg-neutral-300/50 shadow-lg rounded-2xl">
             <CardContent className="p-3">
                 <Tabs defaultValue="Params" className="w-full">
                     {/* Tab Buttons */}

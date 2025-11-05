@@ -243,7 +243,8 @@ export const NavbarLogo = () => {
         width={30}
         height={30}
       /> */}
-      <IconTestPipe className="text-neutral-50" />
+      {/* <IconTestPipe className="text-neutral-50" /> */}
+      <p className="text-neutral-950 dark:text-neutral-50 font-bold text-xl">API<span className="text-cyan-500 ">Orbit</span></p>
     </Link>
   );
 };
